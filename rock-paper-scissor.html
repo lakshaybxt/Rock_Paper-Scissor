@@ -4,48 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissor</title>
-		 <style>body {
-			background-color: rgb(25, 25, 25);
-			color: white;
-			font-family: Arial;
-	}
+		<link rel="stylesheet" href="r-p-s-style.css">
 	
-	.title {
-			font-size: 30px;
-			font-weight: bold;
-	}
-	
-	.move-icon {
-			height: 50px;
-	}
-	
-	.move-button {
-			background-color: transparent;
-			border: 3px solid white;
-			width: 120px;
-			height: 120px;
-			border-radius: 60px;
-			margin-right: 10px;
-			cursor: pointer;
-	}
-	
-	.result {
-			font-size: 25px;
-			font-weight: bold;
-			margin-top: 50px;
-	}
-	
-	.score {
-			margin-top: 60px;
-	}
-	
-	.reset-score-button {
-			background-color: white;
-			border: none;
-			font-size: 15px;
-			padding: 8px 15px;
-			cursor: pointer;
-	}</style>
 </head>
 <body>
     <p class="title">Rock Paper Scissors</p>
@@ -74,95 +34,8 @@
 				updateScoreElement(0);
 				" class="reset-score-button">Reset Score</button>
 
-				<!-- <script src="scripts/10-rock-paper-scissor.js"></script> -->
-				 <script>
-					// covert back the JSON object to JS object
-let score = JSON.parse(localStorage.getItem('score')) || { 
-    wins: 0,
-    losses: 0,
-    ties: 0
-};
+				<script src="r-p-s-script.js"></script>
 
-//calling it display
-updateResult();
-
-function playGame(playerMove) {
-const computerMove = pickComputerMove();
-
-// console.log(computerMove);
-let result = '';	
-
-if (playerMove === 'paper') {
-    if (computerMove === 'rock') {
-        result = 'You win.';
-    } else if (computerMove === 'paper') {
-        result = 'Tie.';
-    } else if (computerMove === 'scissor') {
-        result = 'You lose.';
-    }
-    
-} else if (playerMove === 'scissor') {
-    if (computerMove === 'rock') {
-        result = 'You lose.';
-    } else if (computerMove === 'paper') {
-        result = 'You win.';
-    } else if (computerMove === 'scissor') {
-         result = 'Tie.'
-}
-
-} else if (playerMove === 'rock') {
-    if (computerMove === 'rock') {
-        result = 'Tie.';
-    } else if (computerMove === 'paper') {
-        result = 'You lose.';
-    } else if (computerMove === 'scissor') {
-        result = 'You win.';
-    }
-}
-
-if (result === 'You win.') {
-    score.wins += 1;
-} else if (result === 'You lose.') {
-    score.losses += 1;
-} else if (result === 'Tie.') {
-    score.ties += 1;
-}
-
-//convert the score from JS object to JSON
-localStorage.setItem('score', JSON.stringify(score));
-
-//calling it to update the score
-updateScoreElement();
-
-//for updating the result in paragraph HTML to display
-document.querySelector('.js-result').innerHTML = result;
-
-//for updating the result in paragraph HTML to display
-document.querySelector('.js-moves').innerHTML = `You<img src="${playerMove}-emoji.png" class="move-icon">
-<img src="${computerMove}-emoji.png" class="move-icon">
-Computer`;
-}
-
-//For updating score in Paragraph HTML to display
-function updateScoreElement() {
-document.querySelector('.js-score').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
-}
-
-function pickComputerMove() {
-const randomNumber = Math.random();
-let computerMove = '';	
-
-if (randomNumber >=0 && randomNumber < 1/3) {
-    computerMove = 'rock';
-} else if (randomNumber >= 1/3 && randomNumber < 2/3) {
-    computerMove = 'paper';
-} else if (randomNumber >= 2/3 && randomNumber <= 1) {
-    computerMove = 'scissor'
-} 
-
-return computerMove;
-}
-				 </script>
     </p>
 </body>
 </html>
